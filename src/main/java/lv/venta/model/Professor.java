@@ -1,10 +1,13 @@
 package lv.venta.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -33,6 +36,10 @@ public class Professor {
 	@NotNull
 	@Column(name = "Degree")
 	private Degree degree;
+	
+	@OneToMany(mappedBy = "professor") //one professor has many courses, mapped by - use Course class professor variable name
+	private Collection<Course> courses;
+	
 
 	public String getName() {
 		return name;
